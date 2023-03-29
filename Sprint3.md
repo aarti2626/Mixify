@@ -2,10 +2,12 @@
 
 ## Frontend
 
-For sprint 3, we worked on developing and adding the actual questions of the survey instead of the placement ones that we had in previous Sprints. This included finding images, developing questions, changing the layout of the frotend, and changing logic for the array that was passed into the backend. Additionally, we implemented more of the /results page, which created space for the output of the survey (spotify song recommendations). Though this has not been 100% integrated with the backend, we have the foundation for it there.
+For sprint 3, we worked on developing and adding the actual questions of the survey instead of the placement ones that we had in previous Sprints. This included developing questions and answer choices, finding images, formatting the survey layout, and updating the logic for the array that was passed into the backend. Additionally, we created the interface for the /results page, which will display a list of the spotify song recommendations. Though this has not been 100% integrated with the backend, we have the foundation for it there.
+
 ## Backend
 
 For sprint 3, we refactored our code to include the new questions. We had to update our logic for a lot of our code, most notably, in the Weights() function that calculates attributes based on user responses. We also implemented the connection to the Spotify API, which involved registering our application, authenticating it, and using built-in methods to get recommendations. For the last part, we had to add logic to translate the numbers from our Weights() function to values the Spotify API could understand. We implemented a Recommend() function that actually used our translated inputs to ouput song recommendations using the Spotify API algorithm. We are currently working on translating the Spotify Recommendations (which we can print in JSON format) to URLS that can easily be embedded in the frontend.
+
 # Unit Tests
 
 ## Frontend
@@ -17,11 +19,13 @@ For sprint 3, we refactored our code to include the new questions. We had to upd
 * *title in h2 tag is "Questions :"* - verifies title of questions component
 * *click "Submit" calls onSubmit function* - checks that onSubmit function is called when user clicks submit button
 * *getList function makes post request* - checks that calling getList function in service makes a post request
+* *title in h1 tag is "Here are your results!"* - verifies title of results component
+* *click song title opens spotify website* - checks that clicking a song title on the results page opens spotify website
 
 #### Cypress
 * *clicking "submit" navigates to a new url* - checks that when user clicks the submit button, the app navigates to '/results' url
 * *clicking all of the answer choices in the survey* - checks that when a user clicks answer choices and then submits, the app navigates to '/results' url
-* *clicking a song title* - verifies that when a user clicks on a Spotify URL, it takes them to the Spotify site
+* *clicking a song title* - verifies that when a user clicks on a song title, it takes them to the Spotify site
 
 ## Backend
 
