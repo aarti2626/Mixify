@@ -40,6 +40,7 @@ For sprint 3, we refactored our code to include the new questions. We had to upd
 
 **authenticate.go**
 * *Authenticate()* - Authenticates our application to use the Spotify API using private keys (for this reason, this file is not committed to GitHub)
+
 **server.go**
 
 * *NewServer()* - Creates new gorrila mux router and database and stores in server, calls the *routes()*, and returns new server.
