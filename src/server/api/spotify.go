@@ -42,7 +42,12 @@ func Recommend(client *spotify.Client, user *Response) []spotify.SimpleTrack {
 		recID = append(recID, recs.Tracks[i].ID)
 	}
 
-	playlist, err := client.CreatePlaylistForUser("blehbleh008", "Hi AARTI", "This is your AI overlord speaking", true)
+	example, err := client.GetUsersPublicProfile(spotify.ID("nateisding"))
+	if err != nil {
+		fmt.Println("an error occurred")
+	}
+
+	playlist, err := client.CreatePlaylistForUser(example.ID, "Hi AARTI", "This is your AI overlord speaking", true)
 	if err != nil {
 		log.Fatalf("Couldn't get user: %v", err)
 	}
