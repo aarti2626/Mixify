@@ -12,8 +12,8 @@ func Recommend(client *spotify.Client, user *Response) []spotify.SimpleTrack {
 
 	trackID := []spotify.ID{}
 
-	trackID[0] = user.M.Track1
-	trackID[1] = user.M.Track2
+	trackID = append(trackID, user.M.Track1)
+	trackID = append(trackID, user.M.Track2)
 
 	var seed spotify.Seeds
 	seed.Tracks = trackID
@@ -35,13 +35,20 @@ func Recommend(client *spotify.Client, user *Response) []spotify.SimpleTrack {
 	if err != nil {
 		log.Fatalf("Couldn't get recommendation: %v", err)
 	}
+
+	recID := []spotify.ID{}
+
 	for i := 0; i < len(recs.Tracks); i++ {
-		trackID[i] = recs.Tracks[i].ID
+		recID = append(recID, recs.Tracks[i].ID)
 	}
 
-	playlist, err := client.CreatePlaylistForUser("nateisding", "EEEWEWEWEW", "OKA", true)
+	playlist, err := client.CreatePlaylistForUser("blehbleh008", "Hi AARTI", "This is your AI overlord speaking", true)
+	if err != nil {
+		log.Fatalf("Couldn't get user: %v", err)
+	}
 
-	client.AddTracksToPlaylist(playlist.ID, trackID...)
+	client.AddTracksToPlaylist(playlist.SimplePlaylist.ID, trackID...)
+
 	fmt.Println(playlist.SimplePlaylist.ExternalURLs)
 
 	return recs.Tracks
