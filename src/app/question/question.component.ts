@@ -22,6 +22,7 @@ export class QuestionComponent{
     constructor(private myservice: MixService, private router: Router) {}
 
     public RESULTS: number[] = []
+    public FORMAT: string[] = []
 
     onSubmit(data1: number, data2: number, data3: number, data4: number, data5: number, data6: number) {
       this.router.navigateByUrl('/results');
@@ -33,6 +34,8 @@ export class QuestionComponent{
       this.RESULTS[4] = data5;
       this.RESULTS[5] = data6;
       this.myservice.getList(this.RESULTS);
+      this.FORMAT = this.myservice.getFormattedList(this.FORMAT);
       console.log(this.RESULTS);
+      console.log(this.FORMAT);
     }
 }

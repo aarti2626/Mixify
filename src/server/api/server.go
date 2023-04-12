@@ -62,7 +62,7 @@ func NewServer() *Server {
 }
 
 func (s *Server) routes() {
-	s.HandleFunc("/response", s.ListResponses()).Methods("GET")
+	s.HandleFunc("/results", s.ListResponses()).Methods("GET")
 	s.HandleFunc("/results", s.CreateResponse()).Methods("POST")
 	s.HandleFunc("/response/{id}", s.removeResponse()).Methods("DELETE")
 	s.PathPrefix("/").Handler(AngularHandler).Methods("GET")
@@ -91,7 +91,7 @@ func (s *Server) CreateResponse() http.HandlerFunc {
 		s.Rec_DB = append(s.Rec_DB, userRec)
 		// create track attributes here
 		w.Header().Set("Content-Type", "application/json")
-		if err := json.NewEncoder(w).Encode(i); err != nil {
+		if err := json.NewEncoder(w).Encode(s.Rec_DB); err != nil {
 			http.Error(w, err.Error(), http.StatusInternalServerError)
 			return
 		}

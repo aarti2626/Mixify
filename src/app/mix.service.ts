@@ -12,4 +12,13 @@ export class MixService {
   getList(results:number[]) {
     return this.http.post<any>('http://localhost:8080/results', results).toPromise();
   }
+
+  getFormattedList(format:string[]) {
+    this.http.get<string[]>('http://localhost:8080/results').subscribe(data => {
+        console.log(data);
+        format = data;
+    }
+    )
+    return format;     
+}
 }
