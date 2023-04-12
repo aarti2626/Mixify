@@ -1,9 +1,8 @@
 package api
 
 import (
-	"log"
-
 	"fmt"
+	"log"
 
 	"github.com/zmb3/spotify"
 )
@@ -42,15 +41,12 @@ func Recommend(client *spotify.Client, user *Response) []spotify.SimpleTrack {
 		recID = append(recID, recs.Tracks[i].ID)
 	}
 
-	playlist, err := client.CreatePlaylistForUser("blehbleh008", "Hi AARTI", "This is your AI overlord speaking", true)
+	var alessia *spotify.FullArtist
+	alessia, err = client.GetArtist("2wUjUUtkb5lvLKcGKsKqsR")
 	if err != nil {
-		log.Fatalf("Couldn't get user: %v", err)
+		log.Fatalf("Couldn't get recommendation: %v", err)
 	}
-
-	client.AddTracksToPlaylist(playlist.SimplePlaylist.ID, trackID...)
-
-	fmt.Println(playlist.SimplePlaylist.ExternalURLs)
+	fmt.Println(alessia.Images[0].URL)
 
 	return recs.Tracks
-
 }
