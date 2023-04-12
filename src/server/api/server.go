@@ -38,8 +38,8 @@ type Response struct {
 }
 
 type Rec struct {
-	ID   uuid.UUID             `json:"ID"`
-	Recs []spotify.SimpleTrack `json:"tracks"`
+	ID   uuid.UUID `json:"ID"`
+	Recs []string  `json:"tracks"`
 }
 
 type Server struct {

@@ -1,13 +1,12 @@
 package api
 
 import (
-	"fmt"
 	"log"
 
 	"github.com/zmb3/spotify"
 )
 
-func Recommend(client *spotify.Client, user *Response) []spotify.SimpleTrack {
+func Recommend(client *spotify.Client, user *Response) []string {
 
 	trackID := []spotify.ID{}
 
@@ -35,18 +34,22 @@ func Recommend(client *spotify.Client, user *Response) []spotify.SimpleTrack {
 		log.Fatalf("Couldn't get recommendation: %v", err)
 	}
 
-	recID := []spotify.ID{}
+	formatted := []string{}
+
+	var artist *spotify.FullArtist
 
 	for i := 0; i < len(recs.Tracks); i++ {
-		recID = append(recID, recs.Tracks[i].ID)
+
+		artist, err = client.GetArtist(recs.Tracks[i].Artists[0].ID)
+		if err != nil {
+			log.Fatalf("Couldn't get artist: %v", err)
+		}
+		formatted = append(formatted, recs.Tracks[i].Name)
+		formatted = append(formatted, string(recs.Tracks[i].URI))
+		formatted = append(formatted, artist.Name)
+		formatted = append(formatted, string(artist.URI))
+		formatted = append(formatted, artist.Images[0].URL)
 	}
 
-	var alessia *spotify.FullArtist
-	alessia, err = client.GetArtist("2wUjUUtkb5lvLKcGKsKqsR")
-	if err != nil {
-		log.Fatalf("Couldn't get recommendation: %v", err)
-	}
-	fmt.Println(alessia.Images[0].URL)
-
-	return recs.Tracks
+	return formatted
 }
