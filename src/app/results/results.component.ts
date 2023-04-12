@@ -8,9 +8,24 @@ import { SongComponent } from '../song/song.component';
   styleUrls: ['./results.component.css']
 })
 export class ResultsComponent {
-  songs: String[] = [];
+  songs: any[] = [];
 
   constructor() {
-    this.songs = ["a", "b", "c", "d"];
+    this.songs = [{
+      title: "a",
+      artist: "b",
+      link: "https://open.spotify.com/"
+    },
+    {
+      title: "c",
+      artist: "d",
+      link: "https://open.spotify.com/"
+    },
+    {
+      title: "e",
+      artist: "f",
+      link: "https://open.spotify.com/"
+    },
+    ];
   }
 }

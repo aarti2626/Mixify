@@ -1,3 +1,4 @@
+import {platformBrowserDynamic} from '@angular/platform-browser-dynamic';
 import { MixService } from './mix.service';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
@@ -44,7 +45,7 @@ import { SongComponent } from './song/song.component';
     HttpClientModule
   ],
   providers: [MixService],
-  bootstrap: [AppComponent],
+  bootstrap: [AppComponent, ResultsComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class AppModule { }
