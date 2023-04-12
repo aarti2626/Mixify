@@ -9,6 +9,12 @@
   img {
     width: 50%
   }
+
+  .mat-mdc-slider {
+    align-content: center;
+    align-items: center;
+    margin: 20px;
+  }
   .example-section {
     display: flex;
     flex-wrap: wrap;
