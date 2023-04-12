@@ -6,5 +6,11 @@ import { Component } from '@angular/core';
   styleUrls: ['./song.component.css']
 })
 export class SongComponent {
+  title: string;
+  artist: string;
 
+  constructor() {
+    this.title = "a";
+    this.artist = "b";
+  }
 }
