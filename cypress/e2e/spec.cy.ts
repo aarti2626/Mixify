@@ -1,12 +1,12 @@
 describe('Open Website', () => {
   it('website opens', () => {
-    cy.visit('http://localhost:63021')
+    cy.visit('http://localhost:4200')
   })
 })
 
 describe('Title', () => {
   it('title in tab is "Mixify"', () => {
-    cy.visit('http://localhost:63021')
+    cy.visit('http://localhost:4200')
 
     cy.title().should('equal', "Mixify")
     
@@ -35,7 +35,7 @@ describe('Title', () => {
 
 describe('Submit Button', () => {
   it('clicking "submit" navigates to a new url', () => {
-    cy.visit('http://localhost:63021')
+    cy.visit('http://localhost:4200')
 
     cy.contains('Submit').click()
 
@@ -45,7 +45,7 @@ describe('Submit Button', () => {
 
 describe('Survey Functionality', () => {
   it('user is able to click through survey', () => {
-    cy.visit('http://localhost:63021')
+    cy.visit('http://localhost:4200')
 
     cy.get('mat-button-toggle[type=button]').eq(0).click()
     cy.get('mat-button-toggle[type=button]').eq(4).click()
@@ -62,7 +62,7 @@ describe('Survey Functionality', () => {
 
 describe('Open Spotify From Results', () => {
   it('clicking song name takes user to Spotify website', () => {
-    cy.visit('http://localhost:63021/results')
+    cy.visit('http://localhost:4200/results')
 
     cy.contains('Song Title').invoke('attr', 'target', "_self").click()
 

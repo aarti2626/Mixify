@@ -37,7 +37,7 @@ describe('QuestionComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('title in h2 tag is "Questions: " ', waitForAsync(() => {
+  it('title in h2 tag is "Questions: "', waitForAsync(() => {
     fixture.detectChanges();
     const compiled = fixture.debugElement.nativeElement;
     expect(compiled.querySelector('h2').textContent).toContain('Questions: ');
