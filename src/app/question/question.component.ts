@@ -26,7 +26,6 @@ export class QuestionComponent{
 
     onSubmit(data1: number, data2: number, data3: number, data4: number, data5: number, data6: number) {
       this.router.navigateByUrl('/results');
-      console.log(data1, data2, data3, data4, data5, data6);
       this.RESULTS[0] = data1;
       this.RESULTS[1] = data2;
       this.RESULTS[2] = data3;
@@ -34,7 +33,7 @@ export class QuestionComponent{
       this.RESULTS[4] = data5;
       this.RESULTS[5] = data6;
       this.myservice.getList(this.RESULTS);
-      this.FORMAT = this.myservice.getFormattedList(this.FORMAT);
+      this.FORMAT = [...this.myservice.getFormattedList()];
       console.log(this.RESULTS);
       console.log(this.FORMAT);
     }
