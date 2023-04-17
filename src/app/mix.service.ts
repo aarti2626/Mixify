@@ -10,7 +10,6 @@ import { FormatWidth } from '@angular/common';
 export class MixService {
 
   public playlist: string[] = [];
-  public formatted: any[] = [];
 
   constructor(private http: HttpClient) {
    }
@@ -20,6 +19,6 @@ export class MixService {
   }
 
   getFormattedList(){
-    return this.http.get<any>('http://localhost:8080/results');
+    return this.http.get<string[]>('http://localhost:8080/results');
   }
 }

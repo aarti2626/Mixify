@@ -2,6 +2,7 @@ package api
 
 import (
 	"log"
+	"strings"
 
 	"github.com/zmb3/spotify"
 )
@@ -28,13 +29,16 @@ func Recommend(client *spotify.Client, user *Response) []string {
 	opt.Country = &country
 	opt.Offset = &offset
 	opt.Timerange = &r
-
+	var total string
+	var add string = "embed/"
+	join := []string{}
 	recs, err := client.GetRecommendations(seed, ta, &opt)
 	if err != nil {
 		log.Fatalf("Couldn't get recommendation: %v", err)
 	}
 
 	formatted := []string{}
+	Links := []string{}
 
 	var artist *spotify.FullArtist
 
@@ -46,6 +50,10 @@ func Recommend(client *spotify.Client, user *Response) []string {
 		}
 		formatted = append(formatted, recs.Tracks[i].Name)
 		formatted = append(formatted, recs.Tracks[i].ExternalURLs["spotify"])
+		format := recs.Tracks[i].ExternalURLs["spotify"]
+		join = strings.SplitAfter(format, "com/")
+		total = join[0] + add + join[1]
+		Links = append(Links, total)
 		formatted = append(formatted, artist.Name)
 		formatted = append(formatted, string(artist.ExternalURLs["spotify"]))
 		if len(artist.Images) == 0 {
@@ -55,5 +63,6 @@ func Recommend(client *spotify.Client, user *Response) []string {
 		}
 	}
 
-	return formatted
+	//return formatted
+	return Links
 }

@@ -5,7 +5,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
+import { AppComponent, SafePipe } from './app.component';
 import { QuestionComponent } from './question/question.component';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -28,6 +28,7 @@ import { Song } from './song/song';
     QuestionComponent,
     ResultsComponent,
     LoginComponent,
+    SafePipe
   ],
   imports: [
     BrowserModule,
