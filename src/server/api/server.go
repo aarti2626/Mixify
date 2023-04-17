@@ -89,12 +89,6 @@ func (s *Server) CreateResponse() http.HandlerFunc {
 		userRec.ID = user.ID
 		userRec.Recs = Recommend(s.Client, &user)
 		s.Rec_DB = append(s.Rec_DB, userRec)
-		// create track attributes here
-		w.Header().Set("Content-Type", "application/json")
-		if err := json.NewEncoder(w).Encode(s.Rec_DB); err != nil {
-			http.Error(w, err.Error(), http.StatusInternalServerError)
-			return
-		}
 	}
 }
 
@@ -123,7 +117,10 @@ func Weights(user *Response) {
 func (s *Server) ListResponses() http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		w.Header().Set("Content-Type", "application/json")
-		if err := json.NewEncoder(w).Encode(s.Rec_DB); err != nil {
+		for len(s.Rec_DB) < 1 {
+			continue
+		}
+		if err := json.NewEncoder(w).Encode(s.Rec_DB); err != nil || len(s.Rec_DB) < 1 {
 			http.Error(w, err.Error(), http.StatusInternalServerError)
 			return
 		}

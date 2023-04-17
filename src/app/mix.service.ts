@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
+import { QuestionComponent } from './question/question.component';
 import { HttpClientModule } from '@angular/common/http';
 import { HttpClient } from '@angular/common/http';
+import { FormatWidth } from '@angular/common';
 
 @Injectable({
   providedIn: 'root'
