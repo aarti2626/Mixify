@@ -19,6 +19,6 @@ export class MixService {
   }
 
   getFormattedList(){
-    return this.http.get<any>('http://localhost:8080/results');
+    return this.http.get<string[]>('http://localhost:8080/results');
   }
 }

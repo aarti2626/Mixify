@@ -33,7 +33,7 @@ export class ResultsComponent implements OnInit{
   ngOnInit() {
     this.myservice.getFormattedList().subscribe(data => {
         console.log(data);
-        this.playlist = data[data.length - 1].tracks;
+        this.playlist = data;
         console.log(this.playlist);
     }
     )
