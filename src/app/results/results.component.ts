@@ -40,10 +40,5 @@ export class ResultsComponent implements OnInit{
     )
 
     console.log(this.playlist);
-    for (let i = 0; i < this.playlist.length; i += 5) {
-      let newSong = new Song(this.playlist[i], this.playlist[i + 1], this.playlist[i + 2], this.playlist[i + 3], this.playlist[i + 4]);
-      this.songs.push(newSong);
-    }
-    console.log(this.songs);
   }
 }
