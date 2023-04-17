@@ -3,12 +3,13 @@
 <!--*ngFor=" let song of songs"-->
 
 <p>
-    {{songs}}
     <br>
     {{playlist}}
 </p>
 <br>
-<a target="_blank" href={{playlist[1]}}>
+<iframe *ngFor="let song of playlist" src=song width="600" height="150" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
+
+<!-- <a target="_blank" href={{playlist[1]}}>
     <mat-card class="song">
         <mat-card-header>
         <mat-card-title-group>
@@ -266,6 +267,4 @@
         </mat-card-title-group>
         </mat-card-header>
     </mat-card>
-</a>
-<button mat-raised-button color="accent">Add playlist to library</button>
-
+</a> -->

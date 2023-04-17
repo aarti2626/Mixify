@@ -25,7 +25,6 @@ class Song {
 })
 
 export class ResultsComponent implements OnInit{
-  public songs:Song[] = [];
   public playlist:String[] = [];
 
   constructor(private myservice: MixService, private http: HttpClient) {

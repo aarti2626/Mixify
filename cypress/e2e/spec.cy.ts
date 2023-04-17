@@ -60,12 +60,46 @@ describe('Survey Functionality', () => {
   })
 })
 
-describe('Open Spotify From Results', () => {
-  it('clicking song name takes user to Spotify website', () => {
-    cy.visit('http://localhost:4200/results')
+// describe('Open Spotify From Results', () => {
+//   it('clicking song name takes user to Spotify website', () => {
+//     cy.visit('http://localhost:4200/results')
 
-    cy.contains('Song Title').invoke('attr', 'target', "_self").click()
+//     cy.contains('Song Title').invoke('attr', 'target', "_self").click()
 
-    cy.url()
+//     cy.url()
+//   })
+// })
+
+describe('Results Header', () => {
+  it('user is able to click through survey', () => {
+    cy.visit('http://localhost:4200')
+
+    cy.get('mat-button-toggle[type=button]').eq(1).click()
+    cy.get('mat-button-toggle[type=button]').eq(5).click()
+    cy.get('input[type=range]').as('range').invoke('val', 5).trigger('change')
+    cy.get('mat-button-toggle[type=button]').eq(9).click()
+    cy.get('mat-button-toggle[type=button]').eq(13).click()
+    cy.get('mat-button-toggle[type=button]').eq(17).click()
+
+    cy.contains('Submit').click()
+
+    cy.get('h1').contains("Here are your results!")
+  })
+})
+
+describe('Results Functionality', () => {
+  it('user is able to click through survey', () => {
+    cy.visit('http://localhost:4200')
+
+    cy.get('mat-button-toggle[type=button]').eq(1).click()
+    cy.get('mat-button-toggle[type=button]').eq(5).click()
+    cy.get('input[type=range]').as('range').invoke('val', 5).trigger('change')
+    cy.get('mat-button-toggle[type=button]').eq(9).click()
+    cy.get('mat-button-toggle[type=button]').eq(13).click()
+    cy.get('mat-button-toggle[type=button]').eq(17).click()
+
+    cy.contains('Submit').click()
+
+    cy.get('iframe').should('exist')
   })
 })

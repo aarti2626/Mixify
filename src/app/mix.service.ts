@@ -10,7 +10,6 @@ import { FormatWidth } from '@angular/common';
 export class MixService {
 
   public playlist: string[] = [];
-  public formatted: any[] = [];
 
   constructor(private http: HttpClient) {
    }
