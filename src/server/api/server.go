@@ -3,6 +3,7 @@ package api
 import (
 	"encoding/json"
 	"fmt"
+	"log"
 	"net/http"
 
 	"github.com/google/uuid"
@@ -48,6 +49,7 @@ type Server struct {
 	Responses_DB []Response
 	Rec_DB       []Rec
 	Client       *spotify.Client
+	Links        []string
 }
 
 func NewServer() *Server {
@@ -56,6 +58,7 @@ func NewServer() *Server {
 		Responses_DB: []Response{},
 		Rec_DB:       []Rec{},
 		Client:       Authenticate(),
+		Links:        []string{},
 	}
 	s.routes()
 	return s
@@ -87,7 +90,8 @@ func (s *Server) CreateResponse() http.HandlerFunc {
 		Weights(&user)
 		s.Responses_DB = append(s.Responses_DB, user)
 		userRec.ID = user.ID
-		userRec.Recs = Recommend(s.Client, &user)
+		//userRec.Recs = Recommend(s.Client, &user)
+		s.Links = Recommend(s.Client, &user)
 		s.Rec_DB = append(s.Rec_DB, userRec)
 	}
 }
@@ -117,10 +121,12 @@ func Weights(user *Response) {
 func (s *Server) ListResponses() http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		w.Header().Set("Content-Type", "application/json")
-		for len(s.Rec_DB) < 1 {
+		for len(s.Links) < 1 {
+			//log.Println("Links: ")
 			continue
 		}
-		if err := json.NewEncoder(w).Encode(s.Rec_DB); err != nil || len(s.Rec_DB) < 1 {
+		log.Println(s.Links)
+		if err := json.NewEncoder(w).Encode(s.Links); err != nil || len(s.Rec_DB) < 1 {
 			http.Error(w, err.Error(), http.StatusInternalServerError)
 			return
 		}
