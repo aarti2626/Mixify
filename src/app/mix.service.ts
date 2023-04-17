@@ -7,18 +7,17 @@ import { HttpClient } from '@angular/common/http';
 })
 export class MixService {
 
-  constructor(private http: HttpClient) { }
+  public playlist: string[] = [];
+  public formatted: any[] = [];
+
+  constructor(private http: HttpClient) {
+   }
 
   getList(results:number[]) {
     return this.http.post<any>('http://localhost:8080/results', results).toPromise();
   }
 
-  getFormattedList(format:string[]) {
-    this.http.get<string[]>('http://localhost:8080/results').subscribe(data => {
-        console.log(data);
-        format = data;
-    }
-    )
-    return format;     
-}
+  getFormattedList(){
+    return this.http.get<any>('http://localhost:8080/results');
+  }
 }

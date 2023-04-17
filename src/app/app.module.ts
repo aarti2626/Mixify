@@ -20,7 +20,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { ResultsComponent } from './results/results.component';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { LoginComponent } from './login/login.component';
-import { SongComponent } from './song/song.component';
+import { Song } from './song/song';
 
 @NgModule({
   declarations: [
@@ -28,7 +28,6 @@ import { SongComponent } from './song/song.component';
     QuestionComponent,
     ResultsComponent,
     LoginComponent,
-    SongComponent,
   ],
   imports: [
     BrowserModule,
@@ -42,7 +41,7 @@ import { SongComponent } from './song/song.component';
     MatButtonModule,    
     MatSliderModule,
     MatFormFieldModule,
-    HttpClientModule
+    HttpClientModule,
   ],
   providers: [MixService],
   bootstrap: [AppComponent, ResultsComponent],
