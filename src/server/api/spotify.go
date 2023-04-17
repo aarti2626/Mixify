@@ -45,9 +45,9 @@ func Recommend(client *spotify.Client, user *Response) []string {
 			log.Fatalf("Couldn't get artist: %v", err)
 		}
 		formatted = append(formatted, recs.Tracks[i].Name)
-		formatted = append(formatted, string(recs.Tracks[i].URI))
+		formatted = append(formatted, recs.Tracks[i].ExternalURLs["spotify"])
 		formatted = append(formatted, artist.Name)
-		formatted = append(formatted, string(artist.URI))
+		formatted = append(formatted, string(artist.ExternalURLs["spotify"]))
 		if len(artist.Images) == 0 {
 			formatted = append(formatted, "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_640.png")
 		} else {
