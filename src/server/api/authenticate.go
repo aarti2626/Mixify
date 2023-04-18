@@ -22,8 +22,6 @@ func Authenticate() *spotify.Client {
 	}
 
 	a := spotify.NewAuthenticator("/response", spotify.ScopePlaylistModifyPublic)
-	url := a.AuthURL(authConfig.ClientID)
-	log.Println("Please log in:", url)
 	client := a.NewClient(accessToken)
 
 	return &client
