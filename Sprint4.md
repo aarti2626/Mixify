@@ -1,0 +1,60 @@
+# Sprint 4: Work we have completed
+
+## Frontend
+
+For sprint 4, we worked on fetching the results data from the server and finishing up the results page. We created a function to get and store the spotify links of the generated songs, and we embedded them as media into the results page.
+
+## Backend
+
+For sprint 4, we worked on sending the results data to the frontend. We updated our function to create and return spotify links of each song in the generated playlist.
+
+# Unit Tests
+
+## Frontend
+
+#### Unit
+* *title of app should be "Mixify"* - verifies app title
+* *title in toolbar should be "Mixify"* - checks that header contains title
+* *navigate to "results" takes you to /results* - checks that setting path to '/results' routes app to results component
+* *title in h2 tag is "Questions :"* - verifies title of questions component
+* *click "Submit" calls onSubmit function* - checks that onSubmit function is called when user clicks submit button
+* *getList function makes post request* - checks that calling getList function in service makes a post request
+* *title in h1 tag is "Here are your results!"* - verifies title of results component
+* *click song title opens spotify website* - checks that clicking a song title on the results page opens spotify website
+
+#### Cypress
+* *clicking "submit" navigates to a new url* - checks that when user clicks the submit button, the app navigates to '/results' url
+* *clicking all of the answer choices in the survey* - checks that when a user clicks answer choices and then submits, the app navigates to '/results' url
+* *playlist displays on results page* - verifies that when a user submits the survey, embedded media displays
+
+## Backend
+
+* *TestValidateJSONResponse()* - Test to see if we can populate the user defined Response type with JSON numbers, updated for updated Response data structure
+* *TestCreateUniqueUUID()* - Test to see if user ID generates unique ID values for each user
+* *TestWeightFunct()* - Test all 163,840 possible responses and sees if Spotify will recommend tracks for all possible answer combinations
+
+# Backend API Documentation
+
+**spotify.go**
+* *Recommend()* - Takes in a Response data structure of user responses and a Spotify client, generates Spotify recommendations based on user Responses and returns the Tracks in a native Spotify API format
+
+**authenticate.go**
+* *Authenticate()* - Authenticates our application to use the Spotify API using private keys (for this reason, this file is not committed to GitHub)
+
+**server.go**
+
+* *NewServer()* - Creates new gorrila mux router and database and stores in server, calls the *routes()*, and returns new server.
+* *routes()* - Adds routes and the http method associated with each route. Last "route" host frontend on same port as backend.
+* *CreateResponse()* - Called on "/results" route. Decodes JSON argument from survey response, calls *Weights()*, and stores 
+UUID, response, and music metrics in the database. Also calls Recommend(), then stores recommendations in a database as well.
+* *Weights()* - Assigns specific weight values cooresponsing to each response to assign the user's music metrics with a specific value.
+* *ListResponses()* - Called on "/response" route. Encodes all data from the database to JSON and outputs that data. 
+* *removeResponse()* - Called on "/response/{id}" route. Removes response cooresponding to the UUID passed as a route argument (id). 
+
+**angular_live.go**
+
+File responsible for hosting front end assets on backend port (8080). *routes()* uses the **AngularHandler** variable to make the connection.
+
+**main.go**
+
+Creates new server by calling *NewServer()* and host that server on port 8080 using http's method *ListenAndServe()*.
