@@ -24,8 +24,8 @@ Nathan Schoedl - Backend
 3. Generate a Spotify Client ID and Client Secret using the instructions [here](https://developer.spotify.com/documentation/web-api/tutorials/client-credentials-flow) or, alternatively, email us ("Schoedl, Nathan W." <nathanschoedl@ufl.edu>, "Kalamangalam,Aarti" <akalamangalam@ufl.edu>) for these details. Using either approach, fill in the Client ID and Client Secret in the respective spots in the file ```authenticate.go```. This file is located under src/server/api. The function in question is called ```Authenticate```.
 ```
 authConfig := &clientcredentials.Config{
-		ClientID:     "YOUR-CODE-HERE",
-		ClientSecret: "YOUR-CODE-HERE",
+		ClientID:     "enter clientID here",
+		ClientSecret: "enter clientSecret here",
 		TokenURL:     spotify.TokenURL,
 	}
   ```
