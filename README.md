@@ -5,7 +5,7 @@ Mixify is a free full-stack web application that aims to expand a user's Spotify
 ####
 ---
 ## Members
-
+####
 Aarti Kalamangalam - Backend 
 
 Ursa Pillay - Frontend 
@@ -13,6 +13,7 @@ Ursa Pillay - Frontend
 Cathy Quan - Frontend 
 
 Nathan Schoedl - Backend
+####
 ---
 ## Set up frontend
 1. Check to see if you have node installed on your computer by running the command `node -v` in a terminal. If you do not have node installed, you can download it [here](https://nodejs.org/en/download/). From there, download Angular CLI by running the following command in the terminal: ```npm install -g @angular/cli```
