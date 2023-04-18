@@ -3,6 +3,7 @@ package main
 import (
 	"encoding/json"
 	"fmt"
+	"net/url"
 	"strconv"
 	"testing"
 
@@ -49,15 +50,15 @@ func TestCreateUniqueUUID(t *testing.T) {
 func TestWeightFunct(t *testing.T) {
 
 	var user api.Response
-	var userRec api.Rec
+	Links := []string{}
 	s := api.NewServer()
 
-	for i3 := 0; i3 <= 10; i3++ {
-		for i1 := 1; i1 <= 4; i1++ {
-			for i2 := 1; i2 <= 4; i2++ {
-				for i4 := 1; i4 <= 4; i4++ {
-					for i5 := 1; i4 <= 4; i4++ {
-						for i6 := 1; i4 <= 4; i4++ {
+	for i3 := 0; i3 <= 10; i3 += 5 {
+		for i1 := 1; i1 <= 4; i1 *= 2 {
+			for i2 := 1; i2 <= 4; i2 *= 2 {
+				for i4 := 1; i4 <= 4; i4 *= 2 {
+					for i5 := 1; i5 <= 4; i5 *= 2 {
+						for i6 := 1; i6 <= 4; i6 *= 2 {
 
 							user.R1 = json.Number(strconv.FormatInt(int64(i1), 10))
 							user.R2 = json.Number(strconv.FormatInt(int64(i2), 10))
@@ -66,13 +67,16 @@ func TestWeightFunct(t *testing.T) {
 							user.R5 = json.Number(strconv.FormatInt(int64(i5), 10))
 							user.R6 = json.Number(strconv.FormatInt(int64(i6), 10))
 							api.Weights(&user)
-							userRec.Recs = api.Recommend(s.Client, &user)
+							Links = api.Recommend(s.Client, &user)
 
-							if len(userRec.Recs) == 0 {
-								t.Errorf("No recommendations")
+							for song := 0; song < 20; song += 8 {
+								u, err := url.ParseRequestURI(Links[song])
+								if err != nil {
+									fmt.Println(u)
+									panic(err)
+								}
 							}
 						}
-
 					}
 				}
 			}

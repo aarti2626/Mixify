@@ -40,27 +40,27 @@ func Recommend(client *spotify.Client, user *Response) []string {
 	formatted := []string{}
 	Links := []string{}
 
-	var artist *spotify.FullArtist
+	// var artist *spotify.FullArtist
 
 	for i := 0; i < len(recs.Tracks); i++ {
 
-		artist, err = client.GetArtist(recs.Tracks[i].Artists[0].ID)
-		if err != nil {
-			log.Fatalf("Couldn't get artist: %v", err)
-		}
+		//artist, err = client.GetArtist(recs.Tracks[i].Artists[0].ID)
+		// if err != nil {
+		// 	log.Fatalf("Couldn't get artist: %v", err)
+		// }
 		formatted = append(formatted, recs.Tracks[i].Name)
 		formatted = append(formatted, recs.Tracks[i].ExternalURLs["spotify"])
 		format := recs.Tracks[i].ExternalURLs["spotify"]
 		join = strings.SplitAfter(format, "com/")
 		total = join[0] + add + join[1]
 		Links = append(Links, total)
-		formatted = append(formatted, artist.Name)
-		formatted = append(formatted, string(artist.ExternalURLs["spotify"]))
-		if len(artist.Images) == 0 {
-			formatted = append(formatted, "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_640.png")
-		} else {
-			formatted = append(formatted, artist.Images[0].URL)
-		}
+		//formatted = append(formatted, artist.Name)
+		//formatted = append(formatted, string(artist.ExternalURLs["spotify"]))
+		// if len(artist.Images) == 0 {
+		// 	formatted = append(formatted, "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_640.png")
+		// } else {
+		// 	formatted = append(formatted, artist.Images[0].URL)
+		// }
 	}
 
 	//return formatted
