@@ -10,7 +10,7 @@ import { Router } from '@angular/router';
 })
 
 export class QuestionComponent{
-    title = "Questions: ";
+    title = "Answer these questions to generate the perfect playlist";
     disabled = false;
     max = 10;
     min = 0;
