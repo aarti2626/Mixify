@@ -1,13 +1,13 @@
 <h1>Here are your results!</h1>
 <br>
-<!-- <div *ngFor="let song of playlist">
-    <div>
-    <iframe #iframeContainer [src]=song [width]="600" [height]="150" allowtransparency="true" allow="encrypted-media" ></iframe>
-</div>
-</div> -->
+
 <div *ngFor="let song of playlist">
     <iframe [src]= "song | safe" width="700" height="180" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
 </div>
+
+<a href="http://localhost:8080/">
+    <button mat-flat-button color="accent" type="submit">Take Quiz Again</button>
+</a>
 
 <!-- <a target="_blank" href={{playlist[1]}}>
     <mat-card class="song">

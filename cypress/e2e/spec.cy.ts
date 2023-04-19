@@ -88,7 +88,7 @@ describe('Results Header', () => {
 })
 
 describe('Results Functionality', () => {
-  it('user is able to click through survey', () => {
+  it('playlist displays on results page', () => {
     cy.visit('http://localhost:4200')
 
     cy.get('mat-button-toggle[type=button]').eq(1).click()
